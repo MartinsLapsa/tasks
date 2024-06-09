@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy start cancel finish ]
   before_action :authenticate_user!
 
   # GET /tasks or /tasks.json
@@ -46,6 +46,24 @@ class TasksController < ApplicationController
     @task.destroy!
 
     redirect_to tasks_url, notice: "Task was successfully destroyed."
+  end
+
+  # PATCH/PUT /tasks/1/start
+  def start
+    @task.start!
+    redirect_to task_url(@task), notice: "Task has been started."
+  end
+
+  # PATCH/PUT /tasks/1/cancel
+  def cancel
+    @task.cancel!
+    redirect_to task_url(@task), notice: "Task has been cancelled."
+  end
+
+  # PATCH/PUT /tasks/1/finish
+  def finish
+    @task.finish!
+    redirect_to task_url(@task), notice: "Task has been finished."
   end
 
   private
