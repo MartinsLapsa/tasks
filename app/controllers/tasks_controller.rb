@@ -4,7 +4,8 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    @q = Task.ransack(params[:q])
+    @tasks = @q.result(distinct: true).order(deadline: :asc)
   end
 
   # GET /tasks/1

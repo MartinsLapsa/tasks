@@ -24,4 +24,8 @@ class Task < ApplicationRecord
       transitions from: :in_progress, to: :done
     end
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ['deadline', 'state']
+  end
 end
