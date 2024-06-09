@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     @q = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true).order(deadline: :asc).includes(:responsible, :author)
+    @tasks = policy_scope(@q.result(distinct: true)).order(deadline: :asc).includes(:responsible, :author)
   end
 
   # GET /tasks/1
@@ -14,7 +14,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new(responsible: current_user)
+    @task = authorize Task.new(responsible: current_user)
   end
 
   # GET /tasks/1/edit
@@ -23,7 +23,7 @@ class TasksController < ApplicationController
 
   # POST /tasks
   def create
-    @task = Task.new(task_params)
+    @task = authorize Task.new(task_params)
     @task.author = current_user
 
     if @task.save
@@ -70,7 +70,7 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      @task = authorize Task.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -77,3 +77,5 @@ gem "aasm", "~> 5.5"
 gem "after_commit_everywhere", "~> 1.4"
 
 gem "ransack", "~> 4.1"
+
+gem "pundit", "~> 2.3"
