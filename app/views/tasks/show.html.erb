@@ -6,15 +6,15 @@
 
     <%= render @task %>
 
-    <%= link_to "Edit this task", edit_task_path(@task), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this task", edit_task_path(@task), class: "btn-primary" %>
     <div class="inline-block ml-2">
-      <%= button_to "Destroy this task", task_path(@task), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to "Destroy this task", task_path(@task), method: :delete, class: "btn-danger" %>
     </div>
     <% @task.aasm.events.each do |possible_event| %>
       <div class="inline-block ml-2">
-        <%= button_to possible_event.name.capitalize, url_for(action: possible_event.name, only_path: true), method: :put, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block ml-2 font-medium" %>
+        <%= button_to possible_event.name.capitalize, url_for(action: possible_event.name, only_path: true), method: :put, class: "btn-secondary" %>
       </div>
     <% end %>
-    <%= link_to "Back to tasks", tasks_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Back to tasks", tasks_path, class: "btn-secondary" %>
   </div>
 </div>
