@@ -2,6 +2,7 @@ class Task < ApplicationRecord
   include AASM
 
   belongs_to :author, class_name: 'User'
+  belongs_to :responsible, class_name: 'User'
 
   validates :name, presence: true
   validates :description, presence: true

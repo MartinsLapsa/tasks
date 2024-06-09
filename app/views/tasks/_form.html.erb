@@ -26,6 +26,11 @@
     <%= form.date_field :deadline, class: "input-default" %>
   </div>
 
+  <div class="my-5">
+    <%= form.label :responsible %>
+    <%= form.collection_select :responsible_id, User.all, :id, :email, {}, class: "input-default" %>
+  </div>
+
   <div class="inline">
     <%= form.submit class: "btn-primary" %>
   </div>

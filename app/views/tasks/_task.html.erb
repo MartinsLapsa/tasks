@@ -1,32 +1,33 @@
 <div id="<%= dom_id task %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Author:</strong>
-    <%= task.author_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+    <strong class="mr-1 font-medium mb-1">Name:</strong>
     <%= task.name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= task.description %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">State:</strong>
+    <strong class="mr-1 font-medium mb-1">State:</strong>
     <%= task.state %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Deadline:</strong>
+    <strong class="mr-1 font-medium mb-1">Deadline:</strong>
     <%= task.deadline %>
   </p>
 
-  <% if action_name != "show" %>
-    <%= link_to "Show", task, class: "btn-secondary" %>
-    <%= link_to "Edit", edit_task_path(task), class: "btn-secondary" %>
-    <hr class="mt-6">
-  <% end %>
+  <p class="my-5">
+    <strong class="mr-1 font-medium mb-1">Responsible:</strong>
+    <%= task.responsible %>
+  </p>
+
+  <p class="my-5">
+    <strong class="mr-1 font-medium mb-1">Author:</strong>
+    <%= task.author %>
+  </p>
+
+  <div class="my-5">
+    <strong class="mr-1 font-medium mb-1">Description:</strong>
+    <div class="whitespace-pre-line">
+      <%= task.description %>
+    </div>
+  </div>
 </div>

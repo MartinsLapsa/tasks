@@ -25,6 +25,8 @@
         <th class="text-left">Name</th>
         <th class="text-left"><%= sort_link(@q, :state) %></th>
         <th class="text-left"><%= sort_link(@q, :deadline) %></th>
+        <th class="text-left">Responsible</th>
+        <th class="text-left">Author</th>
         <th></th>
       </tr>
     </thead>
@@ -34,6 +36,8 @@
           <td><%= task.name %></td>
           <td><%= task.state %></td>
           <td><%= task.deadline %></td>
+          <td><%= task.responsible %></td>
+          <td><%= task.author %></td>
           <td>
             <%= link_to "Show", task, class: "btn-secondary" %>
             <%= link_to "Edit", edit_task_path(task), class: "btn-secondary" %>

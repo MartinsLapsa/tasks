@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     @q = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true).order(deadline: :asc)
+    @tasks = @q.result(distinct: true).order(deadline: :asc).includes(:responsible, :author)
   end
 
   # GET /tasks/1
@@ -14,7 +14,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = Task.new(responsible: current_user)
   end
 
   # GET /tasks/1/edit
@@ -75,6 +75,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :description, :deadline)
+      params.require(:task).permit(:name, :description, :deadline, :responsible_id)
     end
 end
