@@ -4,8 +4,8 @@
 - Database: Sqlite3
 
 ## Setup
-run `bundle`
-run `rails db:setup`
+- run `bundle`
+- run `rails db:setup`
 
 ## Tests
 run `rspec spec`
