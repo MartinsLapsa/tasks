@@ -13,3 +13,16 @@
     user.password = 'Passw0rd'
   end
 end
+
+ansis = User.find_by(email: 'ansis@test.com')
+grieta = User.find_by(email: 'grieta@test.com')
+
+Task.find_or_create_by(name: 'Not for Anna', responsible: ansis, author: grieta) do |task|
+  task.description = 'Anna does not see this task'
+  task.deadline = Date.tomorrow
+end
+
+Task.find_or_create_by(name: 'Only Ansis', responsible: ansis, author: ansis) do |task|
+  task.description = 'This task can only be accessed by Ansis'
+  task.deadline = Date.tomorrow
+end
