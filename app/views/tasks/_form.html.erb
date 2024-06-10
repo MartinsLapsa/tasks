@@ -27,7 +27,7 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :responsible %>
+    <%= form.label :responsible_id %>
     <%= form.collection_select :responsible_id, User.all, :id, :email, {}, class: "input-default" %>
   </div>
 
