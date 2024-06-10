@@ -62,6 +62,17 @@ describe "Tasks" do
       expect(page).to have_content "Deadline ▼"
       expect_task_order [task4, task2, task3, task1]
     end
+
+    context 'other user is visiting' do
+      let!(:other_user) { create :user }
+
+      it 'does not see any unrelated tasks' do
+        login_as other_user
+        visit tasks_path
+
+        expect_not_to_show_tasks [task1, task2, task3, task4]
+      end
+    end
   end
 
   it 'can create task' do
@@ -71,12 +82,17 @@ describe "Tasks" do
 
     fill_in 'Name', with: 'New name'
     fill_in 'Description', with: 'Some description'
-    fill_in 'Deadline', with: '2023-01-01'
+    fill_in 'Deadline', with: '01.01.2023'
     select  other_user.to_s, from: 'Responsible'
 
     click_on 'Create Task'
 
     expect(page).to have_content 'Task was successfully created.'
+
+    expect(page).to have_content "Name: New name"
+    expect(page).to have_content "Description: Some description", normalize_ws: true
+    expect(page).to have_content "Deadline: 2023-01-01"
+    expect(page).to have_content "Responsible: #{other_user.email}"
   end
 
   def filter_by_state(state)

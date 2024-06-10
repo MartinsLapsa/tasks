@@ -1,7 +1,7 @@
 require_relative '../rails_helper'
 
 describe "the signin process" do
-  let!(:user) { create :user }
+  let!(:user) { create :user, email: 'user@example.com', password: 'password' }
 
   it "signs me in" do
     visit '/users/sign_in'

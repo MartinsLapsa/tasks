@@ -15,12 +15,17 @@ describe "Tasks" do
 
     fill_in 'Name', with: 'New name'
     fill_in 'Description', with: 'Some description'
-    fill_in 'Deadline', with: '2023-01-01'
+    fill_in 'Deadline', with: '01.01.2023'
     select  other_user.to_s, from: 'Responsible'
 
     click_on 'Update Task'
 
     expect(page).to have_content 'Task was successfully updated.'
+
+    expect(page).to have_content "Name: New name"
+    expect(page).to have_content "Description: Some description", normalize_ws: true
+    expect(page).to have_content "Deadline: 2023-01-01"
+    expect(page).to have_content "Responsible: #{other_user.email}"
   end
 
   it 'can delete task' do
